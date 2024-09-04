@@ -2,7 +2,18 @@ class StringCalculator:
     """ A simple string calculator that can add numbers
      separated by a delimiter.
     """
+    def __init__(self):
+        self._called_count = 0
+    
+    
+    def get_called_count(self) -> int:
+        """ Get the number of times the add method was called."""
+        return self._called_count
+
     def add(self, numbers: str) -> int:
+        """ Add numbers separated by a delimiter."""
+        self._called_count += 1
+
         if not numbers.strip():
             return 0
         

@@ -43,3 +43,15 @@ class TestStringCalculator(unittest.TestCase):
         with self.assertRaises(ValueError) as context:
             calc.add("1,-2,-3,4,-5")
         self.assertEqual(str(context.exception), "negatives not allowed: -2, -3, -5")
+    
+
+    def test_get_called_count(self):
+        calc = StringCalculator()
+        self.assertEqual(calc.get_called_count(), 0)
+        calc.add("1,2")
+        self.assertEqual(calc.get_called_count(), 1)
+        calc.add("3,4,5")
+        self.assertEqual(calc.get_called_count(), 2)
+        with self.assertRaises(ValueError) as context:
+            calc.add("1,-2,-3,4,-5")
+        self.assertEqual(calc.get_called_count(), 3)
