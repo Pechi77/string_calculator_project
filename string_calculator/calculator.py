@@ -7,5 +7,6 @@ class StringCalculator:
         elif numbers == '1,2':
             return 3
         else:
+            numbers = numbers.replace("\n", ",")
             nums = map(int, numbers.split(","))
             return sum(nums)
