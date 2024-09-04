@@ -64,3 +64,8 @@ class TestStringCalculator(unittest.TestCase):
         self.assertEqual(calc.add("1,2,1001,1002,3"), 6)
         self.assertEqual(calc.add("1000"), 1000)
         self.assertEqual(calc.add("1001,1002,1003,1004"), 0)
+    
+
+    def test_multiple_delimiters(self):
+        calc = StringCalculator()
+        self.assertEqual(calc.add("//*%\n1*2%3"), 6)

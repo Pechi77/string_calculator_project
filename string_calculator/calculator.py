@@ -1,3 +1,5 @@
+import re
+
 class StringCalculator:
     """ A simple string calculator that can add numbers
      separated by a delimiter.
@@ -21,13 +23,17 @@ class StringCalculator:
 
         if numbers.startswith("//"):
             parts = numbers.split("\n", 1)
-            delimiter = parts[0][2:]
+            delimiter_part = parts[0][2:]
             numbers = parts[1]
+            delimiter_regex = "|".join(map(re.escape, delimiter_part))
+        else:
+            delimiter_regex = re.escape(delimiter)
+            numbers = numbers.replace("\n", delimiter)
             
-        numbers = numbers.replace("\n", delimiter)
+        # numbers = numbers.replace("\n", delimiter)
 
-        numbers = numbers.replace("\n", ",")
-        nums = list(map(int, numbers.split(delimiter)))
+        # numbers = numbers.replace("\n", ",")
+        nums = list(map(int, re.split(delimiter_regex, numbers)))
         nums = [num for num in nums if num <= 1000]
         negatives = [str(n) for n in nums if n < 0]
         if negatives:
