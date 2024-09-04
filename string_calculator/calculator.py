@@ -28,6 +28,7 @@ class StringCalculator:
 
         numbers = numbers.replace("\n", ",")
         nums = list(map(int, numbers.split(delimiter)))
+        nums = [num for num in nums if num <= 1000]
         negatives = [str(n) for n in nums if n < 0]
         if negatives:
             if len(negatives) > 1:

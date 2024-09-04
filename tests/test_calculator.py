@@ -55,3 +55,12 @@ class TestStringCalculator(unittest.TestCase):
         with self.assertRaises(ValueError) as context:
             calc.add("1,-2,-3,4,-5")
         self.assertEqual(calc.get_called_count(), 3)
+    
+
+    def test_ignore_numbers_greater_than_1000(self):
+        calc = StringCalculator()
+        self.assertEqual(calc.add("2,1001"), 2)
+        self.assertEqual(calc.add("1000,2000,3000"), 1000)
+        self.assertEqual(calc.add("1,2,1001,1002,3"), 6)
+        self.assertEqual(calc.add("1000"), 1000)
+        self.assertEqual(calc.add("1001,1002,1003,1004"), 0)
