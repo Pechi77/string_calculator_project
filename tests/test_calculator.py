@@ -29,4 +29,11 @@ class TestStringCalculator(unittest.TestCase):
         self.assertEqual(calc.add("//;\n1;2"), 3)
         self.assertEqual(calc.add("//|\n1|2|3"), 6)
         self.assertEqual(calc.add("//-\n10-20-30"), 60)
+    
+
+    def test_add_negative_number_throws_exception(self):
+        calculator = StringCalculator()
+        with self.assertRaises(ValueError) as context:
+            calculator.add("1,-2,3")
         
+        self.assertEqual(str(context.exception), "negatives not allowed: -2")

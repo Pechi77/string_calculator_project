@@ -16,7 +16,9 @@ class StringCalculator:
         numbers = numbers.replace("\n", delimiter)
 
         numbers = numbers.replace("\n", ",")
-        nums = map(int, numbers.split(delimiter))
-
+        nums = list(map(int, numbers.split(delimiter)))
+        negatives = [str(n) for n in nums if n < 0]
+        if negatives:
+            raise ValueError(f"negatives not allowed: {negatives[0]}")
         return sum(nums)
         
