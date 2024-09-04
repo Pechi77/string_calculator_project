@@ -19,6 +19,8 @@ class StringCalculator:
         nums = list(map(int, numbers.split(delimiter)))
         negatives = [str(n) for n in nums if n < 0]
         if negatives:
+            if len(negatives) > 1:
+                raise ValueError(f"negatives not allowed: {', '.join(negatives)}")
             raise ValueError(f"negatives not allowed: {negatives[0]}")
         return sum(nums)
         
