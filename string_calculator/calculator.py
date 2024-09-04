@@ -6,3 +6,6 @@ class StringCalculator:
             return 1
         elif numbers == '1,2':
             return 3
+        else:
+            nums = map(int, numbers.split(","))
+            return sum(nums)
