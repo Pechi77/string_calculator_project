@@ -23,3 +23,10 @@ class TestStringCalculator(unittest.TestCase):
     def test_multiple_numbers(self):
         calc = StringCalculator()
         self.assertEqual(calc.add('1,2,3,4'), 10)
+
+    def test_different_delimiters(self):
+        calc = StringCalculator()
+        self.assertEqual(calc.add("//;\n1;2"), 3)
+        self.assertEqual(calc.add("//|\n1|2|3"), 6)
+        self.assertEqual(calc.add("//-\n10-20-30"), 60)
+        
